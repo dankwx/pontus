@@ -1,11 +1,54 @@
 ---
 import "../styles/reset.css";
 import "../styles/global.css";
-import Layout from '../layouts/PageLayout.astro';
+import Layout from "../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
+import pontusImg from "../pontus.jpg";
 ---
 
 <Layout title="pontus">
-	<main>
-		<h1>pontus</h1>
-	</main>
+  <main>
+    <div class="mainWrapper">
+      <h3>pontus</h3>
+      <Image src={pontusImg} alt="pontus image" />
+      <p>voce sabe sobre?</p>
+    </div>
+  </main>
 </Layout>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+  body {
+    background-color: #0a0908;
+  }
+  main {
+    width: 100%;
+    height: 100%;
+  }
+  .mainWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    padding-top: 1rem;
+  }
+  h3 {
+    color: #5e503f;
+    font-size: 2em;
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  img {
+    padding-top: 1em;
+    max-width: 25%;
+    height: auto;
+  }
+  p {
+    color: #eae0d5;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+  }
+</style>
