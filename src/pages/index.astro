@@ -9,9 +9,11 @@ import pontusImg from "../pontus.jpg";
 <Layout title="pontus">
   <main>
     <div class="mainWrapper">
-      <h3>pontus</h3>
-      <Image src={pontusImg} alt="pontus image" />
-      <p>voce sabe sobre?</p>
+      <div class="mainContainer">
+        <h3>pontus</h3>
+        <Image src={pontusImg} alt="pontus image" />
+        <p>voce sabe sobre?</p>
+      </div>
     </div>
   </main>
 </Layout>
@@ -30,25 +32,48 @@ import pontusImg from "../pontus.jpg";
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: baseline;
+    justify-content: center;
     align-items: center;
-    padding-top: 1rem;
   }
+  .mainContainer {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @keyframes glow {
+    0% {
+      color: #5e503f;
+      text-shadow: 0 0 10px rgba(94, 80, 63, 0.5); /* Adiciona um sombreamento para criar o efeito de brilho */
+    }
+    50% {
+      color: #8c7564; /* Altere para a cor mais clara desejada */
+      text-shadow: 0 0 20px rgba(140, 117, 100, 0.7); /* Sombreamento mais intenso na metade da animação */
+    }
+    100% {
+      color: #5e503f;
+      text-shadow: 0 0 10px rgba(94, 80, 63, 0.5);
+    }
+  }
+
   h3 {
-    color: #5e503f;
-    font-size: 2em;
+    font-size: 2rem;
     font-family: "Merriweather", serif;
     font-weight: 400;
     font-style: normal;
+    animation: glow 3s infinite; /* Ajuste a duração conforme necessário */
   }
   img {
-    padding-top: 1em;
-    max-width: 25%;
+    padding-top: 1rem;
+    max-width: 30%;
     height: auto;
   }
   p {
     color: #eae0d5;
     margin-top: 1rem;
     font-size: 1.125rem;
+    font-family: "Merriweather", serif;
+    font-weight: 300;
   }
 </style>
