@@ -13,7 +13,13 @@ import pontusImg from "../pontus.jpg";
         <div class="header">
           <p class="navLink">test1</p>
           <p class="title">pontus</p>
-          <p class="navLink" id="creations" onclick="clickButton">test3</p>
+          <p
+            class="navLink"
+            id="creations"
+            onclick="clickButton; adicionarHelloWorld()"
+          >
+            test3
+          </p>
         </div>
         <div class="creationsContainer" id="creationsOverlay">
           <h1>daniel</h1>
@@ -22,6 +28,9 @@ import pontusImg from "../pontus.jpg";
         <div class="mainContent" id="mainItems">
           <Image src={pontusImg} alt="pontus image" />
           <p class="description">voce sabe sobre?</p>
+          <p class="description" id="firstParagraph">reflexões na tela</p>
+          <p class="description" id="secondParagraph">fluxo de pensamentos</p>
+          <p class="description" id="thirdParagraph">palavras como pontes</p>
         </div>
       </div>
     </div>
@@ -75,26 +84,50 @@ import pontusImg from "../pontus.jpg";
     width: 80%;
     height: 80%;
     flex-direction: column;
-    background-color: blue;
+    background-color: #6d4c3d;
     position: absolute;
     top: 15%;
     left: 2%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+  }
+  #firstParagraph {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 1.3s ease,
+      visibility 1.3s ease;
+  }
+  #secondParagraph {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.3s ease;
+    transition:
+      opacity 1.3s ease,
+      visibility 1.3s ease;
+  }
+  #thirdParagraph {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.3s ease;
+    transition:
+      opacity 1.3s ease,
+      visibility 1.3s ease;
   }
   .mainContent {
     width: auto;
     height: 60%;
     display: flex;
     flex-direction: column;
-    background-color: red;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: left 1s ease;
     align-items: center;
+
   }
   @keyframes glow {
     0% {
@@ -121,6 +154,7 @@ import pontusImg from "../pontus.jpg";
   img {
     max-width: 90%;
     height: auto;
+    border-radius: 10px;
   }
   .description {
     color: #eae0d5;
@@ -128,15 +162,27 @@ import pontusImg from "../pontus.jpg";
     font-size: 1.125rem;
     font-family: "Merriweather", serif;
     font-weight: 300;
+    word-wrap: break-word;
+    text-align: center;
   }
-</style>aaaaaa
+</style>
 
 <script>
   const testButton = document.getElementById("creations");
   const mainItems = document.getElementById("mainItems");
   const creationsOverlay = document.getElementById("creationsOverlay");
+  const firstParagraph = document.getElementById("firstParagraph");
+  const secondParagraph = document.getElementById("secondParagraph");
+  const thirdParagraph = document.getElementById("thirdParagraph");
 
-  if (testButton && mainItems && creationsOverlay) {
+  if (
+    testButton &&
+    mainItems &&
+    creationsOverlay &&
+    firstParagraph &&
+    secondParagraph &&
+    thirdParagraph
+  ) {
     let isOverlayShown = false; // Variável para controlar o estado do overlay
 
     testButton.addEventListener("click", function () {
@@ -150,12 +196,37 @@ import pontusImg from "../pontus.jpg";
         // Torna a creationsOverlay visível com uma animação
         creationsOverlay.style.opacity = "1";
         creationsOverlay.style.visibility = "visible";
+
+        setTimeout(() => {
+          firstParagraph.style.opacity = "1";
+          firstParagraph.style.visibility = "visible";
+        }, 1500);
+
+        setTimeout(() => {
+          secondParagraph.style.opacity = "1";
+          secondParagraph.style.visibility = "visible";
+        }, 2500);
+        setTimeout(() => {
+          thirdParagraph.style.opacity = "1";
+          thirdParagraph.style.visibility = "visible";
+        }, 3500);
       } else {
         // Remove o valor left e height do estilo do elemento mainItems
         mainItems.style.left = "";
         mainItems.style.height = "";
+        mainItems.style.border = "none";
         // Torna a creationsOverlay invisível com uma animação
         creationsOverlay.style.opacity = "0";
+
+        firstParagraph.style.opacity = "0";
+        firstParagraph.style.visibility = "hidden";
+
+        secondParagraph.style.opacity = "0";
+        secondParagraph.style.visibility = "hidden";
+
+        thirdParagraph.style.opacity = "0";
+        thirdParagraph.style.visibility = "hidden";
+
         // Adiciona um pequeno atraso antes de ocultar a overlay para garantir que a animação seja concluída
         setTimeout(() => {
           creationsOverlay.style.visibility = "hidden";
