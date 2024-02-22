@@ -13,9 +13,10 @@ import pontusImg from "../pontus.jpg";
         <div class="header">
           <p class="navLink">test1</p>
           <p class="title">pontus</p>
-          <p class="navLink" id="testButton" onclick="clickButton">test3</p>
+          <p class="navLink" id="creations" onclick="clickButton">test3</p>
         </div>
-        <div class="mainContent">
+        <div class="creationsContainer" id="creationsOverlay"></div>
+        <div class="mainContent" id="mainItems">
           <Image src={pontusImg} alt="pontus image" />
           <p class="description">voce sabe sobre?</p>
         </div>
@@ -42,7 +43,7 @@ import pontusImg from "../pontus.jpg";
     align-items: center;
   }
   .mainContainer {
-    width: 30%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -64,12 +65,28 @@ import pontusImg from "../pontus.jpg";
     font-style: normal;
     padding: 0 5rem;
   }
+  .creationsContainer {
+    display: none;
+    width: 80%;
+    height: 80%;
+    flex-direction: column;
+    background-color: blue;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+  }
   .mainContent {
+    width: auto;
+    height: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 1s ease;
+    align-items: center;
   }
   @keyframes glow {
     0% {
@@ -107,11 +124,17 @@ import pontusImg from "../pontus.jpg";
 </style>aaaaaa
 
 <script>
-  const testButton = document.getElementById("testButton");
+  const testButton = document.getElementById("creations");
+  const mainItems = document.getElementById("mainItems");
+  const creationsOverlay = document.getElementById("creationsOverlay");
 
-  if (testButton) {
+  if (testButton && mainItems && creationsOverlay) {
     testButton.addEventListener("click", function () {
-      alert("aaaaaaaaaaaaaa");
+      // Adiciona o valor left: 80% ao estilo do elemento mainItems
+      mainItems.style.left = "90%";
+      mainItems.style.height = "60%";
+
+      creationsOverlay.style.display = "flex";
     });
   }
 </script>
