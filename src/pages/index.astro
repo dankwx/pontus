@@ -142,45 +142,20 @@ import pontusImg from "../pontus.jpg";
 </style>aaaaaa
 
 <script>
- const testButton = document.getElementById("creations");
-const mainItems = document.getElementById("mainItems");
-const creationsOverlay = document.getElementById("creationsOverlay");
+  const testButton = document.getElementById("creations");
+  const mainItems = document.getElementById("mainItems");
+  const creationsOverlay = document.getElementById("creationsOverlay");
 
-if (testButton && mainItems && creationsOverlay) {
-    let isOverlayShown = false; // Variável para controlar o estado do overlay
+  if (testButton && mainItems && creationsOverlay) {
+    testButton.addEventListener("click", function () {
+      // Adiciona o valor left: 80% ao estilo do elemento mainItems
+      mainItems.style.left = "90%";
+      mainItems.style.height = "60%";
 
-    const toggleOverlay = function () {
-        // Inverte o estado da variável
-        isOverlayShown = !isOverlayShown;
+      creationsOverlay.style.display = "flex"; // Mostra o overlay
 
-        if (isOverlayShown) {
-            // Adiciona o valor left: 80% ao estilo do elemento mainItems
-            mainItems.style.left = "90%";
-            mainItems.style.height = "60%";
-
-            creationsOverlay.style.display = "flex"; // Mostra o overlay
-
-            // Adiciona uma classe para iniciar a animação
-            creationsOverlay.classList.add("show");
-        } else {
-            // Remove o valor left e height do estilo do elemento mainItems
-            mainItems.style.left = "";
-            mainItems.style.height = "";
-
-            // Adiciona uma classe para reverter a animação
-            creationsOverlay.classList.remove("show");
-        }
-    };
-
-    // Adiciona o evento de clique
-    testButton.addEventListener("click", toggleOverlay);
-
-    // Adiciona um evento de transição para quando a animação for revertida
-    creationsOverlay.addEventListener("transitionend", function () {
-        // Oculta o overlay quando a animação for concluída e o estado for falso
-        if (!isOverlayShown) {
-            creationsOverlay.style.display = "none";
-        }
+      // Adiciona uma classe para iniciar a animação
+      creationsOverlay.classList.add("show");
     });
-}
+  }
 </script>
