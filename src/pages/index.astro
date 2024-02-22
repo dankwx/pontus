@@ -75,6 +75,18 @@ import pontusImg from "../pontus.jpg";
     top: 15%;
     left: 2%;
   }
+  .creationsContainer.show {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   .mainContent {
     width: auto;
     height: 60%;
@@ -134,7 +146,10 @@ import pontusImg from "../pontus.jpg";
       mainItems.style.left = "90%";
       mainItems.style.height = "60%";
 
-      creationsOverlay.style.display = "flex";
+      creationsOverlay.style.display = "flex"; // Mostra o overlay
+
+      // Adiciona uma classe para iniciar a animação
+      creationsOverlay.classList.add("show");
     });
   }
 </script>
