@@ -143,19 +143,39 @@ import pontusImg from "../pontus.jpg";
 
 <script>
   const testButton = document.getElementById("creations");
-  const mainItems = document.getElementById("mainItems");
-  const creationsOverlay = document.getElementById("creationsOverlay");
+const mainItems = document.getElementById("mainItems");
+const creationsOverlay = document.getElementById("creationsOverlay");
 
-  if (testButton && mainItems && creationsOverlay) {
+if (testButton && mainItems && creationsOverlay) {
+    let isOverlayShown = false; // Variável para controlar o estado do overlay
+
     testButton.addEventListener("click", function () {
-      // Adiciona o valor left: 80% ao estilo do elemento mainItems
-      mainItems.style.left = "90%";
-      mainItems.style.height = "60%";
+        if (!isOverlayShown) {
+            // Adiciona o valor left: 80% ao estilo do elemento mainItems
+            mainItems.style.left = "90%";
+            mainItems.style.height = "60%";
 
-      creationsOverlay.style.display = "flex"; // Mostra o overlay
+            creationsOverlay.style.display = "flex"; // Mostra o overlay
 
-      // Adiciona uma classe para iniciar a animação
-      creationsOverlay.classList.add("show");
+            // Adiciona uma classe para iniciar a animação
+            creationsOverlay.classList.add("show");
+        } else {
+            // Remove o valor left e height do estilo do elemento mainItems
+            mainItems.style.left = "";
+            mainItems.style.height = "";
+
+            // Remove a classe para reverter a animação
+            creationsOverlay.classList.remove("show");
+
+            // Adiciona um evento de transição para quando a animação for revertida
+            creationsOverlay.addEventListener("transitionend", function () {
+                // Oculta o overlay quando a animação for concluída
+                creationsOverlay.style.display = "none";
+            }, { once: true });
+        }
+
+        // Inverte o estado da variável
+        isOverlayShown = !isOverlayShown;
     });
-  }
+}
 </script>
