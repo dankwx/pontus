@@ -13,10 +13,12 @@ import pontusImg from "../pontus.jpg";
         <div class="header">
           <p class="navLink">test1</p>
           <p class="title">pontus</p>
-          <p class="navLink">test3</p>
+          <p class="navLink" id="testButton" onclick="clickButton">test3</p>
         </div>
-        <Image src={pontusImg} alt="pontus image" />
-        <p class="description">voce sabe sobre?</p>
+        <div class="mainContent">
+          <Image src={pontusImg} alt="pontus image" />
+          <p class="description">voce sabe sobre?</p>
+        </div>
       </div>
     </div>
   </main>
@@ -52,6 +54,7 @@ import pontusImg from "../pontus.jpg";
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding-bottom: 2rem;
   }
   .navLink {
     font-size: 1.4rem;
@@ -60,6 +63,13 @@ import pontusImg from "../pontus.jpg";
     font-weight: 400;
     font-style: normal;
     padding: 0 5rem;
+  }
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
   }
   @keyframes glow {
     0% {
@@ -84,7 +94,6 @@ import pontusImg from "../pontus.jpg";
     animation: glow 3s infinite; /* Ajuste a duração conforme necessário */
   }
   img {
-    padding-top: 1rem;
     max-width: 90%;
     height: auto;
   }
@@ -95,4 +104,14 @@ import pontusImg from "../pontus.jpg";
     font-family: "Merriweather", serif;
     font-weight: 300;
   }
-</style>
+</style>aaaaaa
+
+<script>
+  const testButton = document.getElementById("testButton");
+
+  if (testButton) {
+    testButton.addEventListener("click", function () {
+      alert("aaaaaaaaaaaaaa");
+    });
+  }
+</script>
