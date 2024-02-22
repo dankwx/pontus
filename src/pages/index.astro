@@ -15,7 +15,10 @@ import pontusImg from "../pontus.jpg";
           <p class="title">pontus</p>
           <p class="navLink" id="creations" onclick="clickButton">test3</p>
         </div>
-        <div class="creationsContainer" id="creationsOverlay"></div>
+        <div class="creationsContainer" id="creationsOverlay">
+          <h1>daniel</h1>
+          <h1>daniel</h1>
+        </div>
         <div class="mainContent" id="mainItems">
           <Image src={pontusImg} alt="pontus image" />
           <p class="description">voce sabe sobre?</p>
@@ -74,6 +77,9 @@ import pontusImg from "../pontus.jpg";
     position: absolute;
     top: 15%;
     left: 2%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
   .creationsContainer.show {
     animation: fadeIn 1.5s ease-in-out;
