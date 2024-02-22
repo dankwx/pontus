@@ -69,7 +69,9 @@ import pontusImg from "../pontus.jpg";
     padding: 0 5rem;
   }
   .creationsContainer {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.3s ease;
     width: 80%;
     height: 80%;
     flex-direction: column;
@@ -80,18 +82,6 @@ import pontusImg from "../pontus.jpg";
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  }
-  .creationsContainer.show {
-    animation: fadeIn 1.5s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
   }
   .mainContent {
     width: auto;
@@ -143,39 +133,34 @@ import pontusImg from "../pontus.jpg";
 
 <script>
   const testButton = document.getElementById("creations");
-const mainItems = document.getElementById("mainItems");
-const creationsOverlay = document.getElementById("creationsOverlay");
+  const mainItems = document.getElementById("mainItems");
+  const creationsOverlay = document.getElementById("creationsOverlay");
 
-if (testButton && mainItems && creationsOverlay) {
+  if (testButton && mainItems && creationsOverlay) {
     let isOverlayShown = false; // Variável para controlar o estado do overlay
 
     testButton.addEventListener("click", function () {
-        if (!isOverlayShown) {
-            // Adiciona o valor left: 80% ao estilo do elemento mainItems
-            mainItems.style.left = "90%";
-            mainItems.style.height = "60%";
+      // Inverte o estado da variável
+      isOverlayShown = !isOverlayShown;
 
-            creationsOverlay.style.display = "flex"; // Mostra o overlay
-
-            // Adiciona uma classe para iniciar a animação
-            creationsOverlay.classList.add("show");
-        } else {
-            // Remove o valor left e height do estilo do elemento mainItems
-            mainItems.style.left = "";
-            mainItems.style.height = "";
-
-            // Remove a classe para reverter a animação
-            creationsOverlay.classList.remove("show");
-
-            // Adiciona um evento de transição para quando a animação for revertida
-            creationsOverlay.addEventListener("transitionend", function () {
-                // Oculta o overlay quando a animação for concluída
-                creationsOverlay.style.display = "none";
-            }, { once: true });
-        }
-
-        // Inverte o estado da variável
-        isOverlayShown = !isOverlayShown;
+      if (isOverlayShown) {
+        // Adiciona o valor left: 90% ao estilo do elemento mainItems
+        mainItems.style.left = "90%";
+        mainItems.style.height = "60%";
+        // Torna a creationsOverlay visível com uma animação
+        creationsOverlay.style.opacity = "1";
+        creationsOverlay.style.visibility = "visible";
+      } else {
+        // Remove o valor left e height do estilo do elemento mainItems
+        mainItems.style.left = "";
+        mainItems.style.height = "";
+        // Torna a creationsOverlay invisível com uma animação
+        creationsOverlay.style.opacity = "0";
+        // Adiciona um pequeno atraso antes de ocultar a overlay para garantir que a animação seja concluída
+        setTimeout(() => {
+          creationsOverlay.style.visibility = "hidden";
+        }, 1000);
+      }
     });
-}
+  }
 </script>
