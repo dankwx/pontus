@@ -21,10 +21,12 @@ import pontusImg from "../pontus.jpg";
         </div>
         <div class="mainContent" id="mainItems">
           <Image src={pontusImg} alt="pontus image" />
-          <p class="description">voce sabe sobre?</p>
+          <p class="description" id="mainParagraph">voce sabe sobre?</p>
           <p class="description" id="firstParagraph">reflexões na tela</p>
           <p class="description" id="secondParagraph">fluxo de pensamentos</p>
           <p class="description" id="thirdParagraph">palavras como pontes</p>
+          <p class="description" id="fourthParagraph">miragem no tempo</p>
+          <p class="description" id="fiveParagraph">texturas da mente</p>
           <button id="backButton" onclick="clickButton;">voltar</button>
         </div>
       </div>
@@ -91,22 +93,7 @@ import pontusImg from "../pontus.jpg";
     align-items: center;
     border-radius: 20px;
   }
-  #firstParagraph {
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 1.3s ease,
-      visibility 1.3s ease;
-  }
-  #secondParagraph {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.3s ease;
-    transition:
-      opacity 1.3s ease,
-      visibility 1.3s ease;
-  }
-  #thirdParagraph {
+  .description {
     opacity: 0;
     visibility: hidden;
     transition: opacity 1.3s ease;
@@ -116,12 +103,44 @@ import pontusImg from "../pontus.jpg";
   }
 
   #backButton {
+    width: 120px;
+    height: 100px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.3s ease;
-    transition:
-      opacity 1.3s ease,
-      visibility 1.3s ease;
+    transition: opacity 1.3s ease, visibility 1.3s ease, transform 0.3s ease; /* Adicionando transform à transição */
+    background-color: #e6ccb2;
+    font-family: "Merriweather", serif;
+    font-size: 1.2em;
+    position: relative; /* Adicionando posição relativa para ajustar o pseudoelemento */
+}
+
+#backButton:hover {
+    opacity: 0.8; /* Ajustando a opacidade ao passar o mouse */
+    transform: scale(1.05); /* Expansão ligeira de tamanho ao passar o mouse */
+}
+
+#backButton::before {
+    content: ''; /* Adicionando um pseudoelemento para criar uma sobreposição suavemente mais clara */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2); /* Cor mais clara com opacidade */
+    pointer-events: none; /* Garantindo que o pseudoelemento não interfere com os eventos do mouse */
+    transition: background-color 0.5s ease; /* Adicionando transição para uma mudança suave */
+}
+
+#backButton:hover::before {
+    background-color: rgba(255, 255, 255, 0.4); /* Ajustando a cor mais clara ao passar o mouse */
+}
+
+  #fiveParagraph {
+    margin-bottom: 1rem;
+  }
+  #mainParagraph {
+    opacity: 1;
+    visibility: visible;
   }
 
   .mainContent {
@@ -181,6 +200,8 @@ import pontusImg from "../pontus.jpg";
   const firstParagraph = document.getElementById("firstParagraph");
   const secondParagraph = document.getElementById("secondParagraph");
   const thirdParagraph = document.getElementById("thirdParagraph");
+  const fourthParagraph = document.getElementById("fourthParagraph");
+  const fiveParagraph = document.getElementById("fiveParagraph");
   const backButton = document.getElementById("backButton");
   let isOverlayShown = false;
 
@@ -191,6 +212,8 @@ import pontusImg from "../pontus.jpg";
     firstParagraph &&
     secondParagraph &&
     thirdParagraph &&
+    fourthParagraph &&
+    fiveParagraph &&
     backButton
   ) {
     testButton.addEventListener("click", function () {
@@ -218,9 +241,18 @@ import pontusImg from "../pontus.jpg";
         }, 3500);
 
         setTimeout(() => {
+          fourthParagraph.style.opacity = "1";
+          fourthParagraph.style.visibility = "visible";
+        }, 4500);
+        setTimeout(() => {
+          fiveParagraph.style.opacity = "1";
+          fiveParagraph.style.visibility = "visible";
+        }, 5500);
+
+        setTimeout(() => {
           backButton.style.opacity = "1";
           backButton.style.visibility = "visible";
-        }, 4500);
+        }, 6500);
       }
     });
 
@@ -239,6 +271,12 @@ import pontusImg from "../pontus.jpg";
 
       thirdParagraph.style.opacity = "0";
       thirdParagraph.style.visibility = "hidden";
+
+      fourthParagraph.style.opacity = "0";
+      fourthParagraph.style.visibility = "hidden";
+
+      fiveParagraph.style.opacity = "0";
+      fiveParagraph.style.visibility = "hidden";
 
       backButton.style.opacity = "0";
       backButton.style.visibility = "hidden";
