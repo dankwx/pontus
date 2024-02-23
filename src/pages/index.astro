@@ -13,13 +13,7 @@ import pontusImg from "../pontus.jpg";
         <div class="header">
           <p class="navLink">test1</p>
           <p class="title">pontus</p>
-          <p
-            class="navLink"
-            id="creations"
-            onclick="clickButton; adicionarHelloWorld()"
-          >
-            test3
-          </p>
+          <p class="navLink" id="creations" onclick="clickButton;">test3</p>
         </div>
         <div class="creationsContainer" id="creationsOverlay">
           <h1>daniel</h1>
@@ -31,6 +25,7 @@ import pontusImg from "../pontus.jpg";
           <p class="description" id="firstParagraph">reflexões na tela</p>
           <p class="description" id="secondParagraph">fluxo de pensamentos</p>
           <p class="description" id="thirdParagraph">palavras como pontes</p>
+          <button id="backButton" onclick="clickButton;">voltar</button>
         </div>
       </div>
     </div>
@@ -116,6 +111,16 @@ import pontusImg from "../pontus.jpg";
       opacity 1.3s ease,
       visibility 1.3s ease;
   }
+
+  #backButton {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.3s ease;
+    transition:
+      opacity 1.3s ease,
+      visibility 1.3s ease;
+  }
+
   .mainContent {
     width: auto;
     height: 60%;
@@ -127,7 +132,6 @@ import pontusImg from "../pontus.jpg";
     transform: translate(-50%, -50%);
     transition: left 1s ease;
     align-items: center;
-
   }
   @keyframes glow {
     0% {
@@ -174,6 +178,8 @@ import pontusImg from "../pontus.jpg";
   const firstParagraph = document.getElementById("firstParagraph");
   const secondParagraph = document.getElementById("secondParagraph");
   const thirdParagraph = document.getElementById("thirdParagraph");
+  const backButton = document.getElementById("backButton");
+  let isOverlayShown = false;
 
   if (
     testButton &&
@@ -181,19 +187,17 @@ import pontusImg from "../pontus.jpg";
     creationsOverlay &&
     firstParagraph &&
     secondParagraph &&
-    thirdParagraph
+    thirdParagraph &&
+    backButton
   ) {
-    let isOverlayShown = false; // Variável para controlar o estado do overlay
+    
 
     testButton.addEventListener("click", function () {
-      // Inverte o estado da variável
       isOverlayShown = !isOverlayShown;
 
       if (isOverlayShown) {
-        // Adiciona o valor left: 90% ao estilo do elemento mainItems
         mainItems.style.left = "90%";
         mainItems.style.height = "60%";
-        // Torna a creationsOverlay visível com uma animação
         creationsOverlay.style.opacity = "1";
         creationsOverlay.style.visibility = "visible";
 
@@ -206,32 +210,42 @@ import pontusImg from "../pontus.jpg";
           secondParagraph.style.opacity = "1";
           secondParagraph.style.visibility = "visible";
         }, 2500);
+
         setTimeout(() => {
           thirdParagraph.style.opacity = "1";
           thirdParagraph.style.visibility = "visible";
         }, 3500);
-      } else {
-        // Remove o valor left e height do estilo do elemento mainItems
-        mainItems.style.left = "";
-        mainItems.style.height = "";
-        mainItems.style.border = "none";
-        // Torna a creationsOverlay invisível com uma animação
-        creationsOverlay.style.opacity = "0";
 
-        firstParagraph.style.opacity = "0";
-        firstParagraph.style.visibility = "hidden";
-
-        secondParagraph.style.opacity = "0";
-        secondParagraph.style.visibility = "hidden";
-
-        thirdParagraph.style.opacity = "0";
-        thirdParagraph.style.visibility = "hidden";
-
-        // Adiciona um pequeno atraso antes de ocultar a overlay para garantir que a animação seja concluída
         setTimeout(() => {
-          creationsOverlay.style.visibility = "hidden";
-        }, 1000);
+          backButton.style.opacity = "1";
+          backButton.style.visibility = "visible";
+        }, 4500);
       }
+    });
+
+    // Remova a verificação redundante e adicione o código diretamente
+    backButton.addEventListener("click", function () {
+      mainItems.style.left = "";
+      mainItems.style.height = "";
+      mainItems.style.border = "none";
+      creationsOverlay.style.opacity = "0";
+
+      firstParagraph.style.opacity = "0";
+      firstParagraph.style.visibility = "hidden";
+
+      secondParagraph.style.opacity = "0";
+      secondParagraph.style.visibility = "hidden";
+
+      thirdParagraph.style.opacity = "0";
+      thirdParagraph.style.visibility = "hidden";
+
+      backButton.style.opacity = "0";
+      backButton.style.visibility = "hidden";
+
+      setTimeout(() => {
+        creationsOverlay.style.visibility = "hidden";
+      }, 1000);
+      isOverlayShown = !isOverlayShown;
     });
   }
 </script>
