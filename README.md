@@ -1,1 +1,1 @@
-change project name to morno
+morno, previously "pontus"
